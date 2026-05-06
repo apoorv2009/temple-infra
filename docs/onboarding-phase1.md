@@ -56,7 +56,7 @@ Phase 1 MVP is considered complete only when the Android app works end to end wi
 
 ### Deferred after MVP
 
-- Real push notification delivery to devices
+- Full real-device validation of push notification delivery
 - Payment integration
 - Payment proof upload after QR payment
 - Rich chat experience beyond placeholder state
@@ -202,7 +202,7 @@ These items are not part of the current acceptance target:
 | [x] | MVP3-002 | Devotee without temple sees minimal discovery and add-temple path | Done | `temple-frontend`, `temple-api-gateway`, `temple-admin-service` |
 | [x] | MVP3-003 | Temple admin can publish information notifications | Done | `temple-frontend`, `temple-api-gateway`, `temple-admin-service` |
 | [x] | MVP3-004 | Temple admin can publish wall of fame notifications | Done | `temple-frontend`, `temple-api-gateway`, `temple-admin-service` |
-| [ ] | MVP3-005 | Real mobile push delivery to enrolled users | Planned | `temple-frontend`, backend services |
+| [ ] | MVP3-005 | Real mobile push delivery to enrolled users | In Progress | `temple-frontend`, `temple-api-gateway`, `temple-identity-service`, `temple-registration-service`, `temple-admin-service` |
 | [ ] | MVP3-006 | Chat module beyond placeholder state | Planned | `temple-frontend`, future chat service |
 
 ## 8. Repos Involved
@@ -227,6 +227,7 @@ These items are not part of the current acceptance target:
 - app-level registration
 - app-level sign-in
 - user identity and role lookup
+- device push token storage
 
 ### `temple-registration-service`
 
@@ -234,6 +235,7 @@ These items are not part of the current acceptance target:
 - temple subscription status lookup
 - duplicate request prevention
 - booking and donation pending records
+- approved temple member lookup for notification fanout
 
 ### `temple-admin-service`
 
@@ -243,6 +245,7 @@ These items are not part of the current acceptance target:
 - temple information feed storage
 - temple wall-of-fame storage
 - temple notification publishing
+- push notification fanout to approved temple members
 
 ### `temple-infra`
 
@@ -296,7 +299,7 @@ Every MVP check-in must include these functional checks:
 
 ## 11. Push Notification Plan
 
-Recommended mobile push delivery path:
+Current mobile push delivery path:
 
 - Expo app collects device push token
 - backend stores token per approved user device
@@ -306,4 +309,10 @@ Recommended mobile push delivery path:
   - `FCM` for Android
   - `APNs` for iPhone
 
-Push delivery is planned but not yet implemented in the current shipped scope.
+Current implementation status:
+
+- app-side token registration is implemented
+- identity-side token persistence is implemented
+- admin publish flow now triggers push fanout through approved temple members
+- final delivery still requires validation on a real Android or iPhone device
+- emulator and web are not enough for push acceptance

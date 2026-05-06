@@ -30,7 +30,7 @@ Phase 1 MVP is intentionally narrow:
 
 Deferred after MVP:
 
-- real push notification delivery
+- final real-device push notification validation
 - payment integration
 - payment screenshot collection
 - full chat implementation
@@ -46,6 +46,7 @@ Owns:
 - user sign-in
 - password verification
 - user role lookup
+- Expo push token storage
 
 ### `temple-registration-service`
 
@@ -56,6 +57,7 @@ Owns:
 - devotee subscription status lookup
 - booking and donation pending records
 - member activity aggregation
+- approved temple member lookup for notification delivery
 
 ### `temple-admin-service`
 
@@ -69,6 +71,7 @@ Owns:
 - approve or reject request
 - temple information updates
 - temple wall-of-fame updates
+- push notification fanout to approved temple members
 
 ### `temple-api-gateway`
 
@@ -85,6 +88,7 @@ Owns:
 ### `temple_identity`
 
 - `users`
+- `user_push_tokens`
 
 ### `temple_registration`
 
@@ -119,6 +123,7 @@ Planned later:
 - `POST /api/v1/admin/temple-subscriptions/:id/reject`
 - `POST /api/v1/temples/:templeId/news-feed`
 - `POST /api/v1/temples/:templeId/wall-of-fame`
+- `POST /api/v1/auth/push-tokens/register`
 
 ## 6. Mobile Behavior to Lock
 
@@ -327,7 +332,8 @@ sequenceDiagram
 - login-first auth flow
 - minimal no-temple discovery flow
 - admin notification publishing
-- push delivery planned, not implemented yet
+- push delivery plumbing implemented
+- final device validation still pending
 
 ### MVP3 communication add-on
 
@@ -342,12 +348,22 @@ sequenceDiagram
     TA->>FE: Compose Information update
     FE->>GW: POST /temples/:templeId/news-feed
     GW->>ADM: Create temple information item
+    ADM->>REG: Load approved temple members
+    REG-->>ADM: Approved user ids
+    ADM->>ID: Load active push tokens
+    ID-->>ADM: Expo push tokens
+    ADM->>U: Push via Expo service
     ADM-->>GW: News item created
     GW-->>FE: Publish success
 
     TA->>FE: Compose Wall of Fame update
     FE->>GW: POST /temples/:templeId/wall-of-fame
     GW->>ADM: Create recognition item
+    ADM->>REG: Load approved temple members
+    REG-->>ADM: Approved user ids
+    ADM->>ID: Load active push tokens
+    ID-->>ADM: Expo push tokens
+    ADM->>U: Push via Expo service
     ADM-->>GW: Wall-of-fame item created
     GW-->>FE: Publish success
 
@@ -366,7 +382,7 @@ sequenceDiagram
 
 ## 13. Push Notification Recommendation
 
-Recommended mobile push service:
+Current mobile push service choice:
 
 - `Expo Push Notifications`
 
@@ -378,9 +394,13 @@ Reason:
   - `FCM` for Android
   - `APNs` for iPhone
 
-Planned push sequence:
+Implemented push sequence:
 
 1. App registers device and receives Expo push token.
 2. Backend stores push token against approved user device.
 3. Temple admin publishes `Information` or `Wall of Fame`.
 4. Backend fans out push notification to approved temple members.
+
+Acceptance note:
+
+- push delivery still needs a real-device verification pass before it can be marked complete
