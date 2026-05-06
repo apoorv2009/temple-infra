@@ -50,6 +50,11 @@ Phase 1 MVP is considered complete only when the Android app works end to end wi
 - Temple admin approve and reject actions
 - Simple devotee temple home for approved members
 - Devotee `Home`, `Book`, `Donate`, and `Chat` temple sections
+- Shantidhara bookings are available only for the next 30 days
+- Each day exposes up to two 8:00 AM Shantidhara slots from DB-backed availability
+- Booked Shantidhara slot moves to QR payment and screenshot submission flow
+- Donation flow supports monthly and one-time QR payment with screenshot submission
+- Payment screenshot submission notifies temple admins
 - Admin can publish `Information` updates to temple members
 - Admin can publish `Wall of Fame` updates to temple members
 - Logout from discovery, devotee home, and admin flow
@@ -204,7 +209,9 @@ These items are not part of the current acceptance target:
 | [x] | MVP3-003 | Temple admin can publish information notifications | Done | `temple-frontend`, `temple-api-gateway`, `temple-admin-service` |
 | [x] | MVP3-004 | Temple admin can publish wall of fame notifications | Done | `temple-frontend`, `temple-api-gateway`, `temple-admin-service` |
 | [ ] | MVP3-005 | Real mobile push delivery to enrolled users | In Progress | `temple-frontend`, `temple-api-gateway`, `temple-identity-service`, `temple-registration-service`, `temple-admin-service` |
-| [ ] | MVP3-006 | Chat module beyond placeholder state | Planned | `temple-frontend`, future chat service |
+| [x] | MVP3-006 | Shantidhara booking uses next-30-days DB-backed slot availability | Done | `temple-frontend`, `temple-api-gateway`, `temple-admin-service`, `temple-registration-service` |
+| [x] | MVP3-007 | Book and Donate support QR payment screenshot submission | Done | `temple-frontend`, `temple-api-gateway`, `temple-registration-service`, `temple-admin-service` |
+| [ ] | MVP3-008 | Chat module beyond placeholder state | Planned | `temple-frontend`, future chat service |
 
 ## 8. Repos Involved
 

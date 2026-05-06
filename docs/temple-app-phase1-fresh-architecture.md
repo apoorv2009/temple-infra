@@ -27,6 +27,8 @@ Phase 1 MVP is intentionally narrow:
 - temple admins approve or reject requests
 - admin approval updates the devotee identity profile with the approved temple for faster next sign-in
 - approved users land directly on temple home
+- Shantidhara booking is constrained to next-30-days, two 8:00 AM slots per day from admin-owned slot data
+- booking and donation move through QR payment plus screenshot submission before admin review
 - users can log out
 
 Deferred after MVP:
@@ -58,6 +60,7 @@ Owns:
 - duplicate request prevention
 - devotee subscription status lookup
 - booking and donation pending records
+- payment screenshot submissions for booking and donation
 - member activity aggregation
 - approved temple member lookup for notification delivery
 
@@ -73,7 +76,10 @@ Owns:
 - approve or reject request
 - temple information updates
 - temple wall-of-fame updates
+- Shantidhara slot inventory and reservation
+- temple payment QR profile
 - push notification fanout to approved temple members
+- push notification fanout to temple admins for payment-proof submission
 
 ### `temple-api-gateway`
 
