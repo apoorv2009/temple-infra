@@ -42,6 +42,7 @@ Phase 1 MVP is considered complete only when the Android app works end to end wi
 - Public home screen with `Register User` and `Existing User? Sign in`
 - App-level user registration with no app admin approval
 - App-level sign-in with `contact number + password`
+- Approved temple is stamped into identity during admin approval so sign-in can route directly without waiting on registration
 - Direct routing to temple home when approved temple access exists
 - Searchable `Add Temple` discovery for users without approved temple access
 - Temple subscription request creation
@@ -109,7 +110,7 @@ Use `[x]` only when the story is functionally re-tested after the code change.
 | [x] | MVP-010 | Temple admin can view pending requests for own temple | Done | `temple-frontend`, `temple-api-gateway`, `temple-admin-service` |
 | [x] | MVP-011 | Temple admin can approve request | Done | `temple-frontend`, `temple-api-gateway`, `temple-admin-service`, `temple-registration-service`, `temple-identity-service` |
 | [x] | MVP-012 | Temple admin can reject request | Done | `temple-frontend`, `temple-api-gateway`, `temple-admin-service`, `temple-registration-service` |
-| [x] | MVP-013 | Approved devotee lands directly on temple home after sign-in | Done | `temple-frontend`, `temple-api-gateway`, `temple-registration-service` |
+| [x] | MVP-013 | Approved devotee lands directly on temple home after sign-in | Done | `temple-frontend`, `temple-api-gateway`, `temple-registration-service`, `temple-identity-service` |
 | [x] | MVP-014 | Logout works from devotee and admin flows | Done | `temple-frontend` |
 | [ ] | MVP-015 | Android + Render end-to-end flow is re-tested after this MVP simplification pass | In Progress | `temple-frontend`, all backend repos |
 

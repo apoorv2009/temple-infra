@@ -25,6 +25,7 @@ Phase 1 MVP is intentionally narrow:
 - users without approved temple access see `Add Temple`
 - users search temples and request access
 - temple admins approve or reject requests
+- admin approval updates the devotee identity profile with the approved temple for faster next sign-in
 - approved users land directly on temple home
 - users can log out
 
@@ -46,6 +47,7 @@ Owns:
 - user sign-in
 - password verification
 - user role lookup
+- approved devotee primary temple assignment used by the sign-in response
 - Expo push token storage
 
 ### `temple-registration-service`
@@ -202,10 +204,12 @@ sequenceDiagram
     ID-->>GW: User + role
     GW-->>FE: Sign-in success
 
-    FE->>GW: GET /temple-subscriptions/me
-    GW->>REG: Load user subscriptions
-    REG-->>GW: Subscription list
-    GW-->>FE: Approved or pending state
+    alt Approved temple already assigned in identity
+        GW-->>FE: temple_id + temple_name in sign-in response
+        FE-->>U: Route directly to temple home
+    else No approved temple assigned yet
+        GW-->>FE: Sign-in success without temple
+    end
 
     alt No approved temple
         FE->>GW: GET /temples/active
@@ -229,17 +233,11 @@ sequenceDiagram
 
     TA->>FE: Approve request
     FE->>GW: POST /admin/temple-subscriptions/:id/approve
-    GW->>ADM: Approve request
-    ADM->>REG: Mark subscription approved
-    REG-->>ADM: Approved
-    ADM-->>GW: Approval success
+    GW->>REG: Mark subscription approved
+    REG-->>GW: Approved subscription
+    GW->>ID: Assign approved temple to devotee
+    ID-->>GW: Identity updated
     GW-->>FE: Approval success
-
-    U->>FE: Sign in again
-    FE->>GW: GET /temple-subscriptions/me
-    GW->>REG: Load subscriptions
-    REG-->>GW: Approved temple found
-    GW-->>FE: Route to temple home
 ```
 
 ## 9. Final MVP Recommendation
