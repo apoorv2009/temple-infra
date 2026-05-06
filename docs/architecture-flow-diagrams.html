@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Temple App Architecture and Service Flow</title>
+  <style>
+    :root {
+      --bg: #f7f3ea;
+      --panel: #fffdf8;
+      --text: #2f241c;
+      --muted: #74665a;
+      --border: #dcccb5;
+      --accent: #8b5e3c;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 32px 56px;
+    }
+
+    h1, h2 {
+      margin: 0 0 12px;
+      color: var(--text);
+    }
+
+    h1 {
+      font-size: 30px;
+      line-height: 1.2;
+    }
+
+    h2 {
+      font-size: 22px;
+      margin-top: 28px;
+    }
+
+    p, li {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .meta {
+      margin-bottom: 24px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 24px;
+      margin-top: 18px;
+      box-shadow: 0 10px 24px rgba(91, 62, 35, 0.06);
+      break-inside: avoid;
+    }
+
+    .mermaid {
+      overflow: hidden;
+    }
+
+    ul {
+      margin: 12px 0 0 20px;
+      padding: 0;
+    }
+
+    .note {
+      background: #f4ede3;
+      border-left: 4px solid var(--accent);
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin-top: 14px;
+    }
+
+    @media print {
+      body {
+        background: white;
+      }
+
+      .page {
+        max-width: none;
+        padding: 20px;
+      }
+    }
+  </style>
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
+    mermaid.initialize({
+      startOnLoad: true,
+      securityLevel: "loose",
+      theme: "base",
+      themeVariables: {
+        primaryColor: "#f5ede0",
+        primaryTextColor: "#2f241c",
+        primaryBorderColor: "#b89066",
+        lineColor: "#8b5e3c",
+        secondaryColor: "#fffaf1",
+        tertiaryColor: "#f0e6d6",
+        fontFamily: "Segoe UI, Arial, sans-serif"
+      }
+    });
+  </script>
+</head>
+<body>
+  <div class="page">
+    <h1>Temple App Architecture and Service Flow</h1>
+    <div class="meta">Generated: 2026-05-02</div>
+
+    <div class="note">
+      <strong>Scope:</strong> Multi-temple app with backend temple onboarding, app-level user registration,
+      temple subscription approval, and temple-scoped member experiences.
+    </div>
+
+    <h2>1. Architecture Overview</h2>
+    <div class="card">
+      <div class="mermaid">
+flowchart LR
+    subgraph Client["Client Layer"]
+        FE["Temple Frontend<br/>React Native + Expo"]
+    end
+
+    subgraph Edge["API Edge"]
+        GW["temple-api-gateway<br/>/api/v1"]
+    end
+
+    subgraph Services["Backend Microservices"]
+        ID["temple-identity-service<br/>app sign-up, sign-in, sessions"]
+        REG["temple-registration-service<br/>subscriptions, bookings, donations"]
+        ADM["temple-admin-service<br/>temples, admins, content, slots"]
+    end
+
+    subgraph Data["Service-Owned Databases"]
+        IDDB[("temple_identity")]
+        REGDB[("temple_registration")]
+        ADMDB[("temple_admin")]
+    end
+
+    subgraph External["External Platforms"]
+        RENDER["Render<br/>API hosting"]
+        NEON["Neon Postgres<br/>managed databases"]
+        PAY["Payment Gateway<br/>future integration"]
+        BACKOFFICE["Backend onboarding / admin systems"]
+    end
+
+    FE --> GW
+    GW --> ID
+    GW --> REG
+    GW --> ADM
+
+    ID --> IDDB
+    REG --> REGDB
+    ADM --> ADMDB
+
+    BACKOFFICE --> ADM
+    REG -. payment intent / transaction .-> PAY
+
+    GW -. deployed on .-> RENDER
+    ID -. deployed on .-> RENDER
+    REG -. deployed on .-> RENDER
+    ADM -. deployed on .-> RENDER
+
+    IDDB -. managed by .-> NEON
+    REGDB -. managed by .-> NEON
+    ADMDB -. managed by .-> NEON
+      </div>
+    </div>
+
+    <h2>2. Sign-up and Sign-in Flow</h2>
+    <div class="card">
+      <div class="mermaid">
+sequenceDiagram
+    participant U as User
+    participant FE as Temple Frontend
+    participant GW as API Gateway
+    participant ID as Identity Service
+    participant IDDB as temple_identity
+
+    U->>FE: Register user
+    FE->>GW: POST /api/v1/auth/signup
+    GW->>ID: Forward signup request
+    ID->>IDDB: Create user
+    IDDB-->>ID: User saved
+    ID-->>GW: Signup success
+    GW-->>FE: Signup success
+
+    U->>FE: Sign in
+    FE->>GW: POST /api/v1/auth/signin
+    GW->>ID: Validate credentials
+    ID->>IDDB: Read user + verify password
+    IDDB-->>ID: User record
+    ID-->>GW: Auth result
+    GW-->>FE: Session + user context
+      </div>
+    </div>
+
+    <h2>3. Temple Discovery and Subscription Approval Flow</h2>
+    <div class="card">
+      <div class="mermaid">
+sequenceDiagram
+    participant U as User
+    participant FE as Temple Frontend
+    participant GW as API Gateway
+    participant ADM as Admin Service
+    participant REG as Registration Service
+    participant REGDB as temple_registration
+    participant ADMDB as temple_admin
+    participant TA as Temple Admin
+
+    U->>FE: Open Add Temple
+    FE->>GW: GET /api/v1/temples
+    GW->>ADM: Request active temples
+    ADM->>ADMDB: Read temples
+    ADMDB-->>ADM: Temple list
+    ADM-->>GW: Active temples
+    GW-->>FE: Temple list
+
+    U->>FE: Add me to temple
+    FE->>GW: POST /api/v1/temple-subscriptions
+    GW->>REG: Create subscription request
+    REG->>REGDB: Save pending request
+    REGDB-->>REG: Request saved
+    REG-->>GW: Pending request created
+    GW-->>FE: Request submitted
+
+    TA->>FE: Review pending requests
+    FE->>GW: GET /api/v1/admin/temple-subscriptions
+    GW->>ADM: Fetch own-temple pending requests
+    ADM->>REG: Read request states
+    REG->>REGDB: Load pending requests
+    REGDB-->>REG: Pending requests
+    REG-->>ADM: Request list
+    ADM-->>GW: Pending requests for temple
+    GW-->>FE: Pending requests
+
+    TA->>FE: Approve request
+    FE->>GW: POST /api/v1/admin/temple-subscriptions/:id/approve
+    GW->>ADM: Approve request
+    ADM->>REG: Update subscription status
+    REG->>REGDB: Mark approved
+    REGDB-->>REG: Approved
+    REG-->>ADM: Approval saved
+    ADM->>ADMDB: Write audit log
+    ADMDB-->>ADM: Audit saved
+    ADM-->>GW: Approval success
+    GW-->>FE: Approval success
+      </div>
+    </div>
+
+    <h2>4. Temple Home, Booking, and Donation Flow</h2>
+    <div class="card">
+      <div class="mermaid">
+sequenceDiagram
+    participant U as User
+    participant FE as Temple Frontend
+    participant GW as API Gateway
+    participant ADM as Admin Service
+    participant REG as Registration Service
+    participant ADMDB as temple_admin
+    participant REGDB as temple_registration
+    participant PAY as Payment Gateway
+
+    U->>FE: Open temple home
+    FE->>GW: GET subscribed temples + selected temple content
+    GW->>ADM: Fetch news feed, wall of fame, slots
+    ADM->>ADMDB: Read temple content
+    ADMDB-->>ADM: Content + slots
+    ADM-->>GW: Temple content
+    GW-->>FE: Render temple home
+
+    U->>FE: Book Shantidhara slot
+    FE->>GW: POST /api/v1/temples/:templeId/shantidhara/bookings
+    GW->>REG: Create booking
+    REG->>REGDB: Save booking + payment transaction
+    REGDB-->>REG: Booking saved
+    REG-. future .->PAY: Create payment order
+    REG-->>GW: Booking created
+    GW-->>FE: Booking + payment reference
+
+    U->>FE: Donate
+    FE->>GW: POST /api/v1/temples/:templeId/donations
+    GW->>REG: Create donation order
+    REG->>REGDB: Save donation + payment transaction
+    REGDB-->>REG: Donation saved
+    REG-. future .->PAY: Create payment order
+    REG-->>GW: Donation created
+    GW-->>FE: Donation + payment reference
+      </div>
+    </div>
+
+    <h2>5. Current Service Ownership Summary</h2>
+    <div class="card">
+      <ul>
+        <li><strong>temple-identity-service:</strong> app-level registration, sign-in, password verification, sessions.</li>
+        <li><strong>temple-registration-service:</strong> temple subscriptions, Shantidhara bookings, donation orders, payment transactions.</li>
+        <li><strong>temple-admin-service:</strong> temple onboarding from backend, admins, trustees, temple content, slot availability, approvals.</li>
+        <li><strong>temple-api-gateway:</strong> stable mobile API contract and routing to downstream services.</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
