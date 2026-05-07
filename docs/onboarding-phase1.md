@@ -57,6 +57,7 @@ Phase 1 MVP is considered complete only when the Android app works end to end wi
 - Payment screenshot submission notifies temple admins
 - Admin can publish `Information` updates to temple members
 - Admin can publish `Wall of Fame` updates to temple members
+- Temple admin uses the same temple home layout as devotee with an extra `Admin` tab
 - Logout from discovery, devotee home, and admin flow
 - Android app using Render APIs as the default runtime backend
 
