@@ -1,7 +1,7 @@
 # Temple App Phase 1 - MVP Architecture
 
 Created: 2026-04-28  
-Last Updated: 2026-05-06
+Last Updated: 2026-05-08
 
 ## 1. MVP Runtime Path
 
@@ -36,7 +36,6 @@ Deferred after MVP:
 
 - final real-device push notification validation
 - payment integration
-- payment screenshot collection
 - full chat implementation
 - extra theme refinement after current accepted direction
 
@@ -297,7 +296,7 @@ sequenceDiagram
 
 - Shantidhara slots
 - Shantidhara booking creation
-- donation creation
+- donation amount entry and QR payment initiation
 - payment-pending confirmation flow
 
 ### MVP2 communication add-on
@@ -322,11 +321,18 @@ sequenceDiagram
     REG-->>GW: Booking in payment_pending state
     GW-->>FE: Booking + payment reference
 
-    U->>FE: Create donation
+    U->>FE: Enter donation amount and tap Pay
     FE->>GW: POST /temple-subscriptions/donations
     GW->>REG: Create donation
     REG-->>GW: Donation in payment_pending state
-    GW-->>FE: Donation + payment reference
+    GW-->>FE: Donation + QR payment reference
+
+    U->>FE: Upload donation payment screenshot
+    FE->>GW: POST /temple-subscriptions/donations/:id/payment
+    GW->>REG: Store screenshot proof
+    REG->>ADM: Notify temple admins
+    ADM-->>GW: Admin notification accepted
+    GW-->>FE: Donation proof submitted
 ```
 
 ## 12. MVP3 Architecture

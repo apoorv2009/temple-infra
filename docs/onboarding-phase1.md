@@ -1,7 +1,7 @@
 # Onboarding - Phase 1 MVP
 
 Created: 2026-04-28  
-Last Updated: 2026-05-06  
+Last Updated: 2026-05-08  
 Status: MVP delivery tracker
 
 This file is the git-tracked source of truth for the current Phase 1 scope and progress.
@@ -53,7 +53,7 @@ Phase 1 MVP is considered complete only when the Android app works end to end wi
 - Shantidhara bookings are available only for the next 30 days
 - Each day exposes up to two 8:00 AM Shantidhara slots from DB-backed availability
 - Booked Shantidhara slot moves to QR payment and screenshot submission flow
-- Donation flow supports monthly and one-time QR payment with screenshot submission
+- Donation flow starts with user-entered amount, then shows temple QR payment with screenshot submission
 - Payment screenshot submission notifies temple admins
 - Admin can publish `Information` updates to temple members
 - Admin can publish `Wall of Fame` updates to temple members
@@ -65,7 +65,6 @@ Phase 1 MVP is considered complete only when the Android app works end to end wi
 
 - Full real-device validation of push notification delivery
 - Payment integration
-- Payment proof upload after QR payment
 - Rich chat experience beyond placeholder state
 - Cross-temple activity feed richness
 - Extra theme refinement beyond the current reviewed direction
@@ -125,7 +124,6 @@ Use `[x]` only when the story is functionally re-tested after the code change.
 These items are not part of the current acceptance target:
 
 - Shantidhara slot browsing and booking
-- Donation creation
 - Payment handling
 - Separate `News`, `Wall of Fame`, `Book`, and `Donate` navigation in the member app
 - Rich cross-temple home dashboard
@@ -165,8 +163,7 @@ These items are not part of the current acceptance target:
 
 - Shantidhara slot browsing
 - Shantidhara booking creation
-- monthly donation creation
-- one-time donation creation
+- donation amount entry and QR payment initiation
 - payment-pending confirmation flow
 
 ### MVP2 stories
@@ -175,8 +172,8 @@ These items are not part of the current acceptance target:
 |---|---|---|---|---|
 | [x] | MVP2-001 | Approved devotee can view available Shantidhara slots | Done | `temple-frontend`, `temple-api-gateway`, `temple-admin-service` |
 | [x] | MVP2-002 | Approved devotee can create Shantidhara booking | Done | `temple-frontend`, `temple-api-gateway`, `temple-registration-service` |
-| [x] | MVP2-003 | Approved devotee can create monthly donation | Done | `temple-frontend`, `temple-api-gateway`, `temple-registration-service` |
-| [x] | MVP2-004 | Approved devotee can create one-time donation | Done | `temple-frontend`, `temple-api-gateway`, `temple-registration-service` |
+| [x] | MVP2-003 | Approved devotee can enter donation amount and start QR payment | Done | `temple-frontend`, `temple-api-gateway`, `temple-registration-service` |
+| [x] | MVP2-004 | Approved devotee can submit donation payment screenshot and notify temple admins | Done | `temple-frontend`, `temple-api-gateway`, `temple-registration-service`, `temple-admin-service` |
 | [x] | MVP2-005 | Booking and donation remain in `payment_pending` state for the current phase | Done | `temple-frontend`, `temple-api-gateway`, `temple-registration-service` |
 
 ## 7. MVP3 Scope
@@ -198,7 +195,6 @@ These items are not part of the current acceptance target:
 
 - real push notification delivery
 - payment gateway work
-- payment screenshot submission flow
 - full chat implementation
 
 ### MVP3 stories
