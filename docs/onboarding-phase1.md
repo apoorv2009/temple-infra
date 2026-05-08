@@ -58,6 +58,8 @@ Phase 1 MVP is considered complete only when the Android app works end to end wi
 - Admin can publish `Information` updates to temple members
 - Admin can publish `Wall of Fame` updates to temple members
 - Temple admin uses the same temple home layout as devotee with an extra `Admin` tab
+- Temple assistant foundation is started with a dedicated `temple-ai-service`
+- Chat tab now uses a service-backed temple assistant shell with citations and action cards
 - Logout from discovery, devotee home, and admin flow
 - Android app using Render APIs as the default runtime backend
 
@@ -209,6 +211,26 @@ These items are not part of the current acceptance target:
 | [x] | MVP3-006 | Shantidhara booking uses next-30-days DB-backed slot availability | Done | `temple-frontend`, `temple-api-gateway`, `temple-admin-service`, `temple-registration-service` |
 | [x] | MVP3-007 | Book and Donate support QR payment screenshot submission | Done | `temple-frontend`, `temple-api-gateway`, `temple-registration-service`, `temple-admin-service` |
 | [ ] | MVP3-008 | Chat module beyond placeholder state | Planned | `temple-frontend`, future chat service |
+
+## AI Foundation Scope
+
+The first AI slice is now in progress.
+
+### AI foundation includes
+
+- new `temple-ai-service` scaffold
+- temple-scoped assistant API
+- retrieval-backed fallback answers from temple profile, news feed, and wall of fame
+- action-card responses for `Home`, `Book`, `Donate`, and `Admin`
+- frontend Chat tab connected to the assistant route
+
+### AI foundation next steps
+
+- OpenAI API integration for response generation
+- embeddings and vector storage
+- pgvector-backed retrieval
+- tool-backed status lookups refinement
+- admin drafting assistant improvements
 
 ## 8. Repos Involved
 

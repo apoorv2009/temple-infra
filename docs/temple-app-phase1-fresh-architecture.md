@@ -30,6 +30,7 @@ Phase 1 MVP is intentionally narrow:
 - temple admin now also lands on the shared temple home shell with an extra `Admin` tab
 - Shantidhara booking is constrained to next-30-days, two 8:00 AM slots per day from admin-owned slot data
 - booking and donation move through QR payment plus screenshot submission before admin review
+- temple chat tab is now upgraded to a service-backed temple assistant shell
 - users can log out
 
 Deferred after MVP:
@@ -81,6 +82,16 @@ Owns:
 - push notification fanout to approved temple members
 - push notification fanout to temple admins for payment-proof submission
 
+### `temple-ai-service`
+
+Owns:
+
+- temple-scoped assistant orchestration
+- retrieval-backed fallback responses
+- future OpenAI response generation
+- future pgvector-based retrieval
+- action-card responses for booking, donation, home, and admin flows
+
 ### `temple-api-gateway`
 
 Owns:
@@ -113,6 +124,17 @@ Owns:
 - `temple_news_feed_items`
 - `temple_wall_of_fame_items`
 - `shantidhara_slots`
+
+### `temple_ai`
+
+Planned now:
+
+- source_documents
+- source_chunks
+- chat_sessions
+- chat_messages
+- retrieval_logs
+- tool_audit_logs
 
 Planned later:
 
@@ -168,10 +190,12 @@ React Native + Expo"] --> GW["API Gateway
     GW --> ID["Identity Service"]
     GW --> REG["Registration Service"]
     GW --> ADM["Admin Service"]
+    GW --> AI["AI Service"]
 
     ID --> IDDB[("temple_identity")]
     REG --> REGDB[("temple_registration")]
     ADM --> ADMDB[("temple_admin")]
+    AI --> AIDB[("temple_ai")]
 
     BACKOFFICE["Backend Temple Onboarding"] --> ADM
     PUSH["Expo Push Service (planned)"] -. future .-> FE
@@ -415,3 +439,19 @@ Implemented push sequence:
 Acceptance note:
 
 - push delivery still needs a real-device verification pass before it can be marked complete
+
+## 14. AI Foundation
+
+Current AI slice:
+
+- new `temple-ai-service` scaffold
+- `POST /api/v1/temples/:templeId/assistant/chat` through the gateway
+- retrieval-backed fallback using temple profile, news feed, wall of fame, booking status, donation status, and membership status
+- frontend Chat tab now calls the assistant route and renders action cards
+
+Planned next:
+
+- OpenAI Responses API integration
+- GPT-4.1 response generation
+- embeddings with `text-embedding-3-small`
+- pgvector storage and retrieval
