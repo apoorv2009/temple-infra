@@ -58,7 +58,7 @@ Phase 1 MVP is considered complete only when the Android app works end to end wi
 - Admin can publish `Information` updates to temple members
 - Admin can publish `Wall of Fame` updates to temple members
 - Temple admin uses the same temple home layout as devotee with an extra `Admin` tab
-- Temple assistant now runs through a dedicated `temple-ai-service`
+- Temple assistant now runs live through the gateway-hosted AI runtime, with `temple-ai-service` kept as the target dedicated service split
 - Chat tab now uses a RAG-backed temple assistant with citations and action cards
 - Logout from discovery, devotee home, and admin flow
 - Android app using Render APIs as the default runtime backend
@@ -229,10 +229,11 @@ The first AI slice is now in progress.
   - latest information and wall-of-fame updates
 - action-card responses for `Home`, `Book`, `Donate`, and `Admin`
 - frontend Chat tab connected to the assistant route
+- current deployed path runs the assistant runtime inside `temple-api-gateway` so Chat can work before the dedicated AI repo is provisioned on GitHub and Render
 
 ### AI foundation next steps
 
-- deploy `temple-ai-service`
+- provision and deploy dedicated `temple-ai-service`
 - move AI storage from local SQLite dev default to production Postgres
 - improve admin drafting assistant
 - add chat session persistence and audit logs

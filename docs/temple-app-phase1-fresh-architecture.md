@@ -94,6 +94,11 @@ Owns:
 - OpenAI-backed final answer generation when configured
 - action-card responses for booking, donation, home, and admin flows
 
+Current deployment note:
+
+- the same assistant runtime is temporarily hosted inside `temple-api-gateway`
+- this keeps Chat live while the dedicated AI repo and Render service are being provisioned
+
 ### `temple-api-gateway`
 
 Owns:
@@ -191,12 +196,13 @@ React Native + Expo"] --> GW["API Gateway
     GW --> ID["Identity Service"]
     GW --> REG["Registration Service"]
     GW --> ADM["Admin Service"]
-    GW --> AI["AI Service"]
+    GW -. future split .-> AI["AI Service"]
 
     ID --> IDDB[("temple_identity")]
     REG --> REGDB[("temple_registration")]
     ADM --> ADMDB[("temple_admin")]
-    AI --> AIDB[("temple_ai")]
+    GW --> AIDB[("temple_ai")]
+    AI --> AIDB
 
     BACKOFFICE["Backend Temple Onboarding"] --> ADM
     PUSH["Expo Push Service (planned)"] -. future .-> FE
@@ -451,10 +457,11 @@ Current AI slice:
 - chunking and embeddings-backed retrieval
 - live temple tools for membership, booking, donation, payment profile, and latest notifications
 - frontend Chat tab now calls the assistant route and renders action cards
+- deployed assistant runtime currently executes inside the gateway for immediate availability
 
 Planned next:
 
-- deploy `temple-ai-service` on Render
+- deploy `temple-ai-service` on Render as the separated runtime
 - switch production AI storage to Postgres
 - add chat session persistence
 - add admin drafting tools
