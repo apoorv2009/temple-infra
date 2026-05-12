@@ -87,9 +87,11 @@ Owns:
 Owns:
 
 - temple-scoped assistant orchestration
-- retrieval-backed fallback responses
-- future OpenAI response generation
-- future pgvector-based retrieval
+- persisted temple knowledge ingestion
+- chunking and embeddings storage
+- embeddings-backed retrieval with local fallback
+- tool-backed live temple status lookups
+- OpenAI-backed final answer generation when configured
 - action-card responses for booking, donation, home, and admin flows
 
 ### `temple-api-gateway`
@@ -127,19 +129,18 @@ Owns:
 
 ### `temple_ai`
 
-Planned now:
+Current now:
 
-- source_documents
-- source_chunks
+- `temple_knowledge_documents`
+- `temple_knowledge_chunks`
+- `temple_knowledge_sync_state`
+
+Planned later:
+
 - chat_sessions
 - chat_messages
 - retrieval_logs
 - tool_audit_logs
-
-Planned later:
-
-- push token storage
-- chat persistence
 
 ## 5. Required MVP APIs
 
@@ -444,14 +445,16 @@ Acceptance note:
 
 Current AI slice:
 
-- new `temple-ai-service` scaffold
+- dedicated `temple-ai-service`
 - `POST /api/v1/temples/:templeId/assistant/chat` through the gateway
-- retrieval-backed fallback using temple profile, news feed, wall of fame, booking status, donation status, and membership status
+- persisted temple knowledge sync from admin-owned temple content
+- chunking and embeddings-backed retrieval
+- live temple tools for membership, booking, donation, payment profile, and latest notifications
 - frontend Chat tab now calls the assistant route and renders action cards
 
 Planned next:
 
-- OpenAI Responses API integration
-- GPT-4.1 response generation
-- embeddings with `text-embedding-3-small`
-- pgvector storage and retrieval
+- deploy `temple-ai-service` on Render
+- switch production AI storage to Postgres
+- add chat session persistence
+- add admin drafting tools

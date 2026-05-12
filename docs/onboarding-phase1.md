@@ -58,8 +58,8 @@ Phase 1 MVP is considered complete only when the Android app works end to end wi
 - Admin can publish `Information` updates to temple members
 - Admin can publish `Wall of Fame` updates to temple members
 - Temple admin uses the same temple home layout as devotee with an extra `Admin` tab
-- Temple assistant foundation is started with a dedicated `temple-ai-service`
-- Chat tab now uses a service-backed temple assistant shell with citations and action cards
+- Temple assistant now runs through a dedicated `temple-ai-service`
+- Chat tab now uses a RAG-backed temple assistant with citations and action cards
 - Logout from discovery, devotee home, and admin flow
 - Android app using Render APIs as the default runtime backend
 
@@ -218,19 +218,24 @@ The first AI slice is now in progress.
 
 ### AI foundation includes
 
-- new `temple-ai-service` scaffold
+- dedicated `temple-ai-service`
 - temple-scoped assistant API
-- retrieval-backed fallback answers from temple profile, news feed, and wall of fame
+- persisted temple knowledge documents and chunks in service-owned AI storage
+- embeddings-backed retrieval with local fallback if OpenAI embeddings are unavailable
+- tool-backed status lookups for:
+  - membership
+  - Shantidhara bookings and slot availability
+  - donations and payment instructions
+  - latest information and wall-of-fame updates
 - action-card responses for `Home`, `Book`, `Donate`, and `Admin`
 - frontend Chat tab connected to the assistant route
 
 ### AI foundation next steps
 
-- OpenAI API integration for response generation
-- embeddings and vector storage
-- pgvector-backed retrieval
-- tool-backed status lookups refinement
-- admin drafting assistant improvements
+- deploy `temple-ai-service`
+- move AI storage from local SQLite dev default to production Postgres
+- improve admin drafting assistant
+- add chat session persistence and audit logs
 
 ## 8. Repos Involved
 
