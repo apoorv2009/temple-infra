@@ -31,6 +31,7 @@ Phase 1 MVP is intentionally narrow:
 - temple home uses an image carousel for visual context while detailed temple timings move into a separate `More information` sheet
 - temple home also exposes shortcut utility actions for notifications, streaming, events, activity, donation, and app sharing
 - temple gallery image URLs and timing/detail content are now part of temple-admin-owned temple metadata
+- temple gallery upload is handled through the temple-admin service and served back through the gateway as temple metadata
 - Shantidhara booking is constrained to next-30-days, two 8:00 AM slots per day from admin-owned slot data
 - booking and donation move through QR payment plus screenshot submission before admin review
 - temple chat tab is now upgraded to a service-backed temple assistant shell
