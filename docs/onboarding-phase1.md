@@ -59,6 +59,7 @@ Phase 1 MVP is considered complete only when the Android app works end to end wi
 - Admin can publish `Wall of Fame` updates to temple members
 - Temple admin uses the same temple home layout as devotee with an extra `Admin` tab
 - Temple home now uses an image-led carousel with a separate `More information` panel for timings and temple details
+- Temple gallery images and temple detail fields are owned by temple records in backend data, not bundled in the mobile app
 - Temple assistant now runs live through the gateway-hosted AI runtime, with `temple-ai-service` kept as the target dedicated service split
 - Chat tab now uses a RAG-backed temple assistant with citations and action cards
 - Logout from discovery, devotee home, and admin flow
