@@ -28,6 +28,7 @@ Phase 1 MVP is intentionally narrow:
 - admin approval updates the devotee identity profile with the approved temple for faster next sign-in
 - approved users land directly on temple home
 - temple admin now also lands on the shared temple home shell with an extra `Admin` tab
+- temple home uses an image carousel for visual context while detailed temple timings move into a separate `More information` sheet
 - Shantidhara booking is constrained to next-30-days, two 8:00 AM slots per day from admin-owned slot data
 - booking and donation move through QR payment plus screenshot submission before admin review
 - temple chat tab is now upgraded to a service-backed temple assistant shell
