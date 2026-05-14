@@ -32,6 +32,7 @@ Phase 1 MVP is intentionally narrow:
 - temple home also exposes shortcut utility actions for notifications, streaming, events, activity, donation, and app sharing
 - temple home now includes a left-side `My Profile` panel plus clickable announcement detail cards with progressive `See more` loading
 - current reviewed UI direction uses a white base, Jain-flag yellow as the main accent, and red only for sacred emphasis
+- temple home hero is being refined into a split temple card with compact temple timing summary and Jain-flag-inspired image framing
 - temple gallery image URLs and timing/detail content are now part of temple-admin-owned temple metadata
 - temple gallery upload is handled through the temple-admin service and served back through the gateway as temple metadata
 - Shantidhara booking is constrained to next-30-days, two 8:00 AM slots per day from admin-owned slot data
