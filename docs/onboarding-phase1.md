@@ -62,6 +62,7 @@ Phase 1 MVP is considered complete only when the Android app works end to end wi
 - Temple home now uses an in-image info action plus utility shortcut icons for notifications, live streaming, events, activities, donation, and sharing
 - Temple home now includes a left-side `My Profile` panel for user details, donation access, booking access, and sharing
 - `Information` updates are now presented to users as clickable `Announcements` cards with progressive loading
+- Current visual direction uses a bright white base with Jain-flag yellow as the primary accent and red only for sacred emphasis
 - Temple gallery images and temple detail fields are owned by temple records in backend data, not bundled in the mobile app
 - Temple onboarding now supports storing temple gallery images inside temple-admin-owned backend data for app display
 - Temple assistant now runs live through the gateway-hosted AI runtime, with `temple-ai-service` kept as the target dedicated service split
