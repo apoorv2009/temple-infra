@@ -1,7 +1,7 @@
 # Onboarding - Phase 1 MVP
 
 Created: 2026-04-28  
-Last Updated: 2026-05-08  
+Last Updated: 2026-05-14  
 Status: MVP delivery tracker
 
 This file is the git-tracked source of truth for the current Phase 1 scope and progress.
@@ -60,10 +60,12 @@ Phase 1 MVP is considered complete only when the Android app works end to end wi
 - Temple admin uses the same temple home layout as devotee with an extra `Admin` tab
 - Temple home now uses an image-led carousel with a separate `More information` panel for timings and temple details
 - Temple home now uses an in-image info action plus utility shortcut icons for notifications, live streaming, events, activities, donation, and sharing
+- Temple home now includes a left-side `My Profile` panel for user details, donation access, booking access, and sharing
+- `Information` updates are now presented to users as clickable `Announcements` cards with progressive loading
 - Temple gallery images and temple detail fields are owned by temple records in backend data, not bundled in the mobile app
 - Temple onboarding now supports storing temple gallery images inside temple-admin-owned backend data for app display
 - Temple assistant now runs live through the gateway-hosted AI runtime, with `temple-ai-service` kept as the target dedicated service split
-- Chat tab now uses a RAG-backed temple assistant with citations and action cards
+- Chat tab now uses a RAG-backed temple assistant with citations and action cards under the name `Aagam Mitra`
 - Logout from discovery, devotee home, and admin flow
 - Android app using Render APIs as the default runtime backend
 
