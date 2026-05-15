@@ -1,7 +1,7 @@
 # Onboarding - Phase 1 MVP
 
 Created: 2026-04-28  
-Last Updated: 2026-05-14  
+Last Updated: 2026-05-15  
 Status: MVP delivery tracker
 
 This file is the git-tracked source of truth for the current Phase 1 scope and progress.
@@ -69,6 +69,10 @@ Phase 1 MVP is considered complete only when the Android app works end to end wi
 - Temple onboarding now supports storing temple gallery images inside temple-admin-owned backend data for app display
 - Temple assistant now runs live through the gateway-hosted AI runtime, with `temple-ai-service` kept as the target dedicated service split
 - Chat tab now uses a RAG-backed temple assistant with citations and action cards under the name `Aagam Mitra`
+- Logged-in users can now add another user to the temple from Home
+- Existing app users are sent as pending temple requests to temple admins
+- New users can be registered with a temporary password and sent as pending temple requests to temple admins
+- Newly referred users must change their temporary password on first login before using the app
 - Logout from discovery, devotee home, and admin flow
 - Android app using Render APIs as the default runtime backend
 

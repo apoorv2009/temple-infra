@@ -1,7 +1,7 @@
 # Temple App Phase 1 - MVP Architecture
 
 Created: 2026-04-28  
-Last Updated: 2026-05-08
+Last Updated: 2026-05-15
 
 ## 1. MVP Runtime Path
 
@@ -38,6 +38,10 @@ Phase 1 MVP is intentionally narrow:
 - Shantidhara booking is constrained to next-30-days, two 8:00 AM slots per day from admin-owned slot data
 - booking and donation move through QR payment plus screenshot submission before admin review
 - temple chat tab is now upgraded to a service-backed temple assistant shell named `Aagam Mitra`
+- logged-in users can add other users to the temple from Home through a gateway-orchestrated referred-member flow
+- existing app users are looked up in identity and then sent as pending temple subscription requests
+- new referred users are created in identity with a temporary password, then sent as pending temple subscription requests
+- first login for a referred user now forces password change before further app access
 - users can log out
 
 Deferred after MVP:
@@ -59,6 +63,9 @@ Owns:
 - user role lookup
 - approved devotee primary temple assignment used by the sign-in response
 - Expo push token storage
+- referred devotee account creation
+- first-login forced password change state
+- contact-number-based user lookup for referred member flow
 
 ### `temple-registration-service`
 
