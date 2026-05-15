@@ -28,6 +28,7 @@ Phase 1 MVP is intentionally narrow:
 - admin approval updates the devotee identity profile with the approved temple for faster next sign-in
 - approved users land directly on temple home
 - temple admin now also lands on the shared temple home shell with an extra `Admin` tab
+- temple events support per-user interest / RSVP tracked in temple-admin-owned event data
 - temple home uses an image carousel for visual context while detailed temple timings move into a separate `More information` sheet
 - temple home also exposes shortcut utility actions for notifications, streaming, events, activity, donation, and app sharing
 - temple home now includes a left-side `My Profile` panel plus clickable announcement detail cards with progressive `See more` loading
@@ -92,6 +93,7 @@ Owns:
 - temple information updates
 - temple wall-of-fame updates
 - temple event creation and event feed
+- temple event interest / RSVP tracking and interest counts
 - Shantidhara slot inventory and reservation
 - temple payment QR profile
 - push notification fanout to approved temple members

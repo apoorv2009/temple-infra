@@ -58,6 +58,9 @@ Phase 1 MVP is considered complete only when the Android app works end to end wi
 - Admin can publish `Information` updates to temple members
 - Admin can publish `Wall of Fame` updates to temple members
 - Admin can create temple events that are visible on both admin and devotee home
+- Temple events on Home now support user interest / RSVP
+- Users can mark interest in an event and see a confirmed state on that event card
+- Temple admins can see how many users have shown interest in each event
 - Temple admin uses the same temple home layout as devotee with an extra `Admin` tab
 - Temple home now uses an image-led carousel with a separate `More information` panel for timings and temple details
 - Temple home now uses an in-image info action plus utility shortcut icons for notifications, live streaming, events, activities, donation, and sharing
