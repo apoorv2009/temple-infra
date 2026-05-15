@@ -55,6 +55,9 @@ Phase 1 MVP is considered complete only when the Android app works end to end wi
 - Booked Shantidhara slot moves to QR payment and screenshot submission flow
 - Donation flow starts with user-entered amount, then shows temple QR payment with screenshot submission
 - Payment screenshot submission notifies temple admins
+- Donation flow now supports `Self`, `Other`, and `Gupt Daan`
+- Donation history is visible inside the member experience
+- Donation payment screenshot submission also creates a wall-of-fame entry automatically
 - Admin can publish `Information` updates to temple members
 - Admin can publish `Wall of Fame` updates to temple members
 - Admin can create temple events that are visible on both admin and devotee home
@@ -193,6 +196,9 @@ These items are not part of the current acceptance target:
 | [x] | MVP2-002 | Approved devotee can create Shantidhara booking | Done | `temple-frontend`, `temple-api-gateway`, `temple-registration-service` |
 | [x] | MVP2-003 | Approved devotee can enter donation amount and start QR payment | Done | `temple-frontend`, `temple-api-gateway`, `temple-registration-service` |
 | [x] | MVP2-004 | Approved devotee can submit donation payment screenshot and notify temple admins | Done | `temple-frontend`, `temple-api-gateway`, `temple-registration-service`, `temple-admin-service` |
+| [x] | MVP2-004A | Approved devotee can donate as Self, Other, or Gupt Daan | Done | `temple-frontend`, `temple-api-gateway`, `temple-registration-service` |
+| [x] | MVP2-004B | Approved devotee can view donation history in the app | Done | `temple-frontend`, `temple-api-gateway`, `temple-registration-service` |
+| [x] | MVP2-004C | Donation payment proof auto-creates a wall-of-fame entry | Done | `temple-api-gateway`, `temple-registration-service`, `temple-admin-service` |
 | [x] | MVP2-005 | Booking and donation remain in `payment_pending` state for the current phase | Done | `temple-frontend`, `temple-api-gateway`, `temple-registration-service` |
 
 ## 7. MVP3 Scope

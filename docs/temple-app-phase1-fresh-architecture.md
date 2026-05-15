@@ -38,6 +38,9 @@ Phase 1 MVP is intentionally narrow:
 - temple gallery upload is handled through the temple-admin service and served back through the gateway as temple metadata
 - Shantidhara booking is constrained to next-30-days, two 8:00 AM slots per day from admin-owned slot data
 - booking and donation move through QR payment plus screenshot submission before admin review
+- donation supports `Self`, `Other`, and `Gupt Daan`
+- donation history is visible in the member app
+- donation payment screenshot submission also creates a wall-of-fame entry
 - temple chat tab is now upgraded to a service-backed temple assistant shell named `Aagam Mitra`
 - logged-in users can add other users to the temple from Home through a gateway-orchestrated referred-member flow
 - existing app users are looked up in identity and then sent as pending temple subscription requests
@@ -76,6 +79,7 @@ Owns:
 - duplicate request prevention
 - devotee subscription status lookup
 - booking and donation pending records
+- donation donor-type metadata
 - payment screenshot submissions for booking and donation
 - member activity aggregation
 - approved temple member lookup for notification delivery
@@ -379,6 +383,7 @@ sequenceDiagram
     FE->>GW: POST /temple-subscriptions/donations/:id/payment
     GW->>REG: Store screenshot proof
     REG->>ADM: Notify temple admins
+    REG->>ADM: Create wall-of-fame item
     ADM-->>GW: Admin notification accepted
     GW-->>FE: Donation proof submitted
 ```
