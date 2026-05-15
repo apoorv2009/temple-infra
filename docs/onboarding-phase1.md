@@ -57,6 +57,7 @@ Phase 1 MVP is considered complete only when the Android app works end to end wi
 - Payment screenshot submission notifies temple admins
 - Admin can publish `Information` updates to temple members
 - Admin can publish `Wall of Fame` updates to temple members
+- Admin can create temple events that are visible on both admin and devotee home
 - Temple admin uses the same temple home layout as devotee with an extra `Admin` tab
 - Temple home now uses an image-led carousel with a separate `More information` panel for timings and temple details
 - Temple home now uses an in-image info action plus utility shortcut icons for notifications, live streaming, events, activities, donation, and sharing
@@ -105,6 +106,7 @@ Phase 1 MVP is considered complete only when the Android app works end to end wi
 4. Admin approves or rejects a request.
 5. Admin can send `Information` updates.
 6. Admin can publish `Wall of Fame` updates.
+7. Admin can create temple events.
 7. Approved devotee can sign in and reach temple home.
 
 ## 4. MVP Stories
@@ -215,6 +217,7 @@ These items are not part of the current acceptance target:
 | [x] | MVP3-002 | Devotee without temple sees minimal discovery and add-temple path | Done | `temple-frontend`, `temple-api-gateway`, `temple-admin-service` |
 | [x] | MVP3-003 | Temple admin can publish information notifications | Done | `temple-frontend`, `temple-api-gateway`, `temple-admin-service` |
 | [x] | MVP3-004 | Temple admin can publish wall of fame notifications | Done | `temple-frontend`, `temple-api-gateway`, `temple-admin-service` |
+| [x] | MVP3-004A | Temple admin can create temple events visible to members | Done | `temple-frontend`, `temple-api-gateway`, `temple-admin-service` |
 | [ ] | MVP3-005 | Real mobile push delivery to enrolled users | In Progress | `temple-frontend`, `temple-api-gateway`, `temple-identity-service`, `temple-registration-service`, `temple-admin-service` |
 | [x] | MVP3-006 | Shantidhara booking uses next-30-days DB-backed slot availability | Done | `temple-frontend`, `temple-api-gateway`, `temple-admin-service`, `temple-registration-service` |
 | [x] | MVP3-007 | Book and Donate support QR payment screenshot submission | Done | `temple-frontend`, `temple-api-gateway`, `temple-registration-service`, `temple-admin-service` |

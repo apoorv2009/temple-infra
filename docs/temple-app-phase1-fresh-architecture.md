@@ -84,6 +84,7 @@ Owns:
 - approve or reject request
 - temple information updates
 - temple wall-of-fame updates
+- temple event creation and event feed
 - Shantidhara slot inventory and reservation
 - temple payment QR profile
 - push notification fanout to approved temple members
