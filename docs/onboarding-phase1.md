@@ -373,3 +373,11 @@ Current implementation status:
 - admin publish flow now triggers push fanout through approved temple members
 - final delivery still requires validation on a real Android or iPhone device
 - emulator and web are not enough for push acceptance
+
+## 12. Latest UI and Event Update
+
+- `Announcements` now open on a dedicated screen for the selected temple
+- `Activities` now open on a dedicated screen for the selected temple
+- `Live Events` now open in the app flow and can launch the configured YouTube stream in the in-app browser
+- temple admins can now attach a `live_stream_url` while creating an event
+- temple admins can also update an existing event to add or change the live-stream link

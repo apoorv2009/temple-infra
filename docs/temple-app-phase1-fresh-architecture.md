@@ -487,3 +487,22 @@ Planned next:
 - switch production AI storage to Postgres
 - add chat session persistence
 - add admin drafting tools
+
+## 15. Event Streaming and Detail Screens
+
+Current frontend flow:
+
+- Home utility `Announcements` opens a dedicated announcements screen for the selected temple
+- Home utility `Activities` opens a dedicated activities screen
+- Home utility `Live Events` opens a dedicated live-events screen
+
+Current event model:
+
+- temple events now support optional `live_stream_url`
+- admins can set the stream URL during event creation
+- admins can update an existing event to revise the stream URL later
+
+Current playback path:
+
+- the app opens the configured YouTube live URL through Expo in-app browser
+- for `TMP-0001` there is a temporary live fallback link until temple admins manage live links directly through event editing
