@@ -72,7 +72,7 @@ Phase 1 MVP is considered complete only when the Android app works end to end wi
 - Current visual direction uses a bright white base with light orange, saffron yellow, and Jain-flag accent colors for icons and active states
 - Temple home now uses a stronger split-layout temple hero, visible Jain-flag-inspired image framing, smaller premium-style icons, and a cleaner 4-column utility grid closer to the reviewed reference direction
 - Temple gallery images and temple detail fields are owned by temple records in backend data, not bundled in the mobile app
-- Temple onboarding now supports storing temple gallery images inside temple-admin-owned backend data for app display
+- Temple onboarding now stores temple gallery images in temple-admin-owned backend data and serves them back as normal gallery URLs instead of inline base64 payloads
 - Temple assistant now runs live through the gateway-hosted AI runtime, with `temple-ai-service` kept as the target dedicated service split
 - Chat tab now uses a RAG-backed temple assistant with citations and action cards under the name `Aagam Mitra`
 - Logged-in users can now add another user to the temple from Home
