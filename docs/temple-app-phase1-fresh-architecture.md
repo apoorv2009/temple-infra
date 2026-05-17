@@ -83,6 +83,8 @@ Owns:
 - payment screenshot submissions for booking and donation
 - member activity aggregation
 - approved temple member lookup for notification delivery
+- DB-backed notification inbox for temple public/personal/admin messages
+- Razorpay-ready payment transaction state and provider metadata
 
 ### `temple-admin-service`
 
@@ -468,6 +470,8 @@ Implemented push sequence:
 Acceptance note:
 
 - push delivery still needs a real-device verification pass before it can be marked complete
+- notification inbox now sits in `temple-registration-service` and is separate from announcements
+- mobile checkout flow now targets Razorpay order creation + verify contracts, with QR screenshot retained as fallback during rollout
 
 ## 14. AI Foundation
 

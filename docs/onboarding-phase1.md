@@ -371,8 +371,17 @@ Current implementation status:
 - app-side token registration is implemented
 - identity-side token persistence is implemented
 - admin publish flow now triggers push fanout through approved temple members
+- registration now stores a DB-backed notification inbox for public and personal temple messages
+- notification bell is now intended to read only DB-backed inbox items, separate from announcements
 - final delivery still requires validation on a real Android or iPhone device
 - emulator and web are not enough for push acceptance
+
+Current payment-gateway progress:
+
+- registration service now holds Razorpay-ready payment transaction fields
+- gateway and frontend now support payment-order creation and payment verification contracts
+- native Razorpay mobile checkout wiring has been added in the app build
+- live production use still requires Razorpay keys and backend redeploy
 
 ## 12. Latest UI and Event Update
 
