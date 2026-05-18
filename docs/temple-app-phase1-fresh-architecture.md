@@ -99,6 +99,7 @@ Owns:
 - temple information updates
 - temple wall-of-fame updates
 - temple event creation and event feed
+- temple event deletion, announcement deletion, wall-of-fame deletion, and pending-request cleanup for admin operations
 - temple event interest / RSVP tracking and interest counts
 - Shantidhara slot inventory and reservation
 - temple payment QR profile

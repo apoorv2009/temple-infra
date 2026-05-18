@@ -61,6 +61,7 @@ Phase 1 MVP is considered complete only when the Android app works end to end wi
 - Admin can publish `Information` updates to temple members
 - Admin can publish `Wall of Fame` updates to temple members
 - Admin can create temple events that are visible on both admin and devotee home
+- Admin can remove pending temple requests and delete temple announcements, wall-of-fame entries, and events from admin management
 - Temple events on Home now support user interest / RSVP
 - Users can mark interest in an event and see a confirmed state on that event card
 - Temple admins can see how many users have shown interest in each event
